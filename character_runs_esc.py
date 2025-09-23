@@ -6,21 +6,39 @@ character = load_image('animation_sheet.png')
 
 # fill here
 running = True
+x=800//2
+frame =0
 
 def handle_events():
     # fill here
-    # global running  # 함수 내 사용되는 지역 변수가 아닌 전역 변수임을 명시함
+    global running
+    global x
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT: #window의 x버튼
             running = False
-            #running가 전역변수가 아닌 지역변수로 인식됨
-            # 즉, esc를 눌렀을 떄 running 라는 지역 변수가 생성되는 것으로 인식
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE: #esc키를 눌렀을 떄
-            running = False
+        elif event.type == SDL_KEYDOWN:
+            if event.key == SDLK_ESCAPE: #esc키를 눌렀을 떄
+               running = False
+            elif event.key ==SDLK_LEFT:
+                x-=10
+            elif event.key == SDLK_RIGHT:
+                x+=10
     pass
 
-frame = 0
+
+while running:
+    clear_canvas()
+    grass.draw(400, 30)
+    character.clip_draw(frame * 100, 100, 100, 100, x, 90)
+    update_canvas()
+    handle_events()
+    frame = (frame + 1) % 8
+    delay(0.05)
+
+
+
+
 for x in range(0, 800, 5):
 
     clear_canvas()
