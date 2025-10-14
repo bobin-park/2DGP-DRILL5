@@ -7,7 +7,7 @@ tuk_ground = load_image('TUK_GROUND.png')
 character = load_image('animation_sheet.png')
 
 x, y = TUK_WIDTH//2,TUK_HEIGHT//2
-running = False
+running = True
 frame=0
 
 def handle_events():
@@ -27,10 +27,12 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key  ==SDLK_RIGHT:
             x+=10
             running = True
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            exit()
 
 
 
-while 1:
+while running:
     # global frame
     clear_canvas()
     tuk_ground.draw(TUK_WIDTH//2,TUK_HEIGHT//2)
