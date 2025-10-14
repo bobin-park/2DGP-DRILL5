@@ -40,6 +40,14 @@ while 1:
     tuk_ground.draw(TUK_WIDTH//2, TUK_HEIGHT//2)
     x += dir_x * 5
     y += dir_y * 5
+    if x < 25:
+        x = 25
+    if x > TUK_WIDTH - 25:
+        x = TUK_WIDTH - 25
+    if y < 150:
+        y = 150
+    if y > TUK_HEIGHT - 100:
+        y = TUK_HEIGHT - 100
     if running:
         frame = (frame + 1) % 8
         if right:
